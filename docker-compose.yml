@@ -4,6 +4,6 @@ services:
     build: ./docker
     tty: true
     ports:
-      - "8080:8080"
+      - "8000:8000"
     volumes:
       - .:/go/src/work

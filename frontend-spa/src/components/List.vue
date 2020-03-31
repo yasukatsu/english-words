@@ -17,9 +17,10 @@ export default {
     }
   },
   created () {
-    axios.get('localhost:8000/list').then(res => {
+    axios.get('http://localhost:8000/list').then(res => {
       this.words = res.data
     })
+    console.log(this.words)
   }
 }
 </script>

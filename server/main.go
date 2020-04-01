@@ -16,13 +16,18 @@ import (
 type English struct {
 	Words []struct {
 		Meanings          string `json:"Meanings"`
-		EnglishDefinition string `json:"English Definition"`
+		EnglishDefinition string `json:"EnglishDefinition"`
 		POS               string `json:"POS"`
 		JTranslation      string `json:"J Translation"`
 	} `json:"words"`
 }
 
-var path = "./resourse/data.json"
+var (
+	pathA = "./resourse/a.json"
+	pathB = "./resourse/b.json"
+	pathC = "./resourse/c.json"
+	pathD = "./resourse/d.json"
+)
 
 func main() {
 	allowedOrigins := handlers.AllowedOrigins([]string{"http://localhost:8080"})
@@ -35,7 +40,7 @@ func main() {
 }
 
 func list(w http.ResponseWriter, r *http.Request) {
-	body, err := readFile(path)
+	body, err := readFile(pathA)
 	if err != nil {
 		log.Fatalf("ReadFile err is %v", err)
 		return

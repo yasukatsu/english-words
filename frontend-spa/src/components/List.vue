@@ -1,14 +1,28 @@
 <template>
   <div class="list">
-    <ul>
-      <li v-for="word in words" :key="word.Meanings">{{ word }}</li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>word</th>
+          <th>describe</th>
+          <th>japanese</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="word in words" :key="word">
+          <td>{{word.Meanings}}</td>
+          <td>{{word.EnglishDefinition}}</td>
+          <td>{{word.JTranslation}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-
+var path = 'http://localhost:8000/list'
 export default {
   name: 'List',
   data () {
@@ -17,7 +31,7 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:8000/list').then(res => {
+    axios.get(path).then(res => {
       this.words = res.data
     })
     console.log(this.words)

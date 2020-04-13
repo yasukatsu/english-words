@@ -1,10 +1,19 @@
 version: "3"
 services:
-  server:
-    build: ./docker
+  backend:
+    build: ./backend/build/golang
     tty: true
     ports:
       - "8000:8000"
     volumes:
       - .:/go/src/work
     command: go run server/main.go
+  db:
+    image: postgres:latast
+    env_file: 
+      - config/.env.local
+    volumes: 
+      - ./backend/build/postgres/strage:/var/lib/postgresql
+      - ./backend/build/postgres/sql:/docker-entrypoint-initdb.d
+    ports: 
+      - 5432:5432

@@ -7,11 +7,11 @@ services:
       - "8000:8000"
     volumes:
       - .:/go/src/work
-    command: go run server/main.go
+    command: go run backend/cmd/main.go
   db:
-    image: postgres:latast
+    image: postgres:12.2
     env_file: 
-      - config/.env.local
+      - ./backend/config/.env.local
     volumes: 
       - ./backend/build/postgres/strage:/var/lib/postgresql
       - ./backend/build/postgres/sql:/docker-entrypoint-initdb.d

@@ -1,5 +1,6 @@
 version: "3"
 services:
+  
   backend:
     build: ./backend/build/golang
     tty: true
@@ -8,6 +9,7 @@ services:
     volumes:
       - .:/go/src/work
     command: go run backend/cmd/main.go
+
   db:
     image: postgres:12.2
     env_file: 

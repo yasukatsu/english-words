@@ -19,3 +19,10 @@ services:
       - ./backend/build/postgres/sql:/docker-entrypoint-initdb.d
     ports: 
       - 5432:5432
+
+  frontend:
+    build: 
+      context: ./frontend-spa
+      dockerfile: Dockerfile.dev
+    ports: 
+      - '8080:8080'

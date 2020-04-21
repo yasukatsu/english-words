@@ -1,10 +1,11 @@
 package main
 
 import (
-	"bytes"
-	"io/ioutil"
+	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	pos "y_ara/english-words/backend/internal/app/postgres"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -30,27 +31,44 @@ func main() {
 	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "DELETE", "PUT"})
 
 	r := mux.NewRouter()
-	r.HandleFunc("/list", list)
+	r.HandleFunc("/list", listWords)
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(allowedOrigins, allowedMethods)(r)))
 }
 
-func list(w http.ResponseWriter, r *http.Request) {
-	body, err := readFile(path)
+func listWords(w http.ResponseWriter, r *http.Request) {
+	words, err := pos.ListWords()
+	fmt.Println(words)
+
 	if err != nil {
-		log.Fatalf("ReadFile err is %v", err)
+		log.Fatalf("ListWords err is %v\n", err)
 		return
 	}
 
-	w.Write(body)
+	byteWords, err := json.Marshal(words)
+	if err != nil {
+		log.Fatalf("json.Marshal err is %v\n", err)
+		return
+	}
+	w.Write(byteWords)
 }
 
-func readFile(path string) ([]byte, error) {
-	raw, err := ioutil.ReadFile(path)
-	if err != nil {
-		log.Fatalf("ReadFile err is %v", err)
-		return nil, err
-	}
-	body := bytes.TrimPrefix(raw, []byte("\xef\xbb\xbf"))
-	return body, nil
-}
+// func list(w http.ResponseWriter, r *http.Request) {
+// 	body, err := readFile(path)
+// 	if err != nil {
+// 		log.Fatalf("ReadFile err is %v", err)
+// 		return
+// 	}
+
+// 	w.Write(body)
+// }
+
+// func readFile(path string) ([]byte, error) {
+// 	raw, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		log.Fatalf("ReadFile err is %v", err)
+// 		return nil, err
+// 	}
+// 	body := bytes.TrimPrefix(raw, []byte("\xef\xbb\xbf"))
+// 	return body, nil
+// }

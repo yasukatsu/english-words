@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	pos "y_ara/english-words/backend/internal/app/postgres"
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+
+	pos "y_ara/english-words/backend/internal/app/postgres"
 )
 
 // Words ...
@@ -33,12 +34,14 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/list", listWords)
 
+	fmt.Println("test")
+
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(allowedOrigins, allowedMethods)(r)))
 }
 
 func listWords(w http.ResponseWriter, r *http.Request) {
 	words, err := pos.ListWords()
-	fmt.Println(words)
+	fmt.Println("test2")
 
 	if err != nil {
 		log.Fatalf("ListWords err is %v\n", err)

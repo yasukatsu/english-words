@@ -6,9 +6,10 @@ services:
     tty: true
     ports:
       - "8000:8000"
+    working_dir: /go/src/y_ara/english-words/backend
     volumes:
-      - .:/go/src/work
-    command: go run backend/cmd/main.go
+      - ./backend:/go/src/y_ara/english-words/backend
+    command: go run cmd/main.go
 
   db:
     image: postgres:12.2

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -13,6 +14,7 @@ import (
 )
 
 func main() {
+	fmt.Printf("start\n")
 	e := config.GetGoEnv()
 	err := config.NewConfig(e)
 	if err != nil {
@@ -33,6 +35,7 @@ func main() {
 	// fmt.Println(words)
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(allowedOrigins, allowedMethods)(r)))
+	fmt.Printf("end\n")
 }
 
 func listWords(w http.ResponseWriter, r *http.Request) {

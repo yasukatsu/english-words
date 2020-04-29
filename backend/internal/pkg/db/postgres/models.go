@@ -1,10 +1,10 @@
-//  Create by reverse
 package postgres
 
 import (
 	"time"
 )
 
+// Words ...
 type Words struct {
 	Id       int       `xorm:"not null pk autoincr INTEGER"`
 	Spel     string    `xorm:"VARCHAR(255)"`

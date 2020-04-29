@@ -5,6 +5,8 @@ services:
     container_name: backend
     build: ./backend/build/golang
     tty: true
+    env_file: 
+      - backend/config/.env.local
     ports:
       - "8000:8000"
     working_dir: /go/src/y_ara/english-words/backend

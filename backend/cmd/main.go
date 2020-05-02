@@ -21,18 +21,11 @@ func main() {
 		log.Fatalf("load config %v", err)
 		return
 	}
-	allowedOrigins := handlers.AllowedOrigins([]string{"http://localhost:8080"})
+	allowedOrigins := handlers.AllowedOrigins([]string{"http://0.0.0.0:8080"})
 	allowedMethods := handlers.AllowedMethods([]string{"GET", "POST", "DELETE", "PUT"})
 
 	r := mux.NewRouter()
 	r.HandleFunc("/list", listWords)
-
-	// words, err := pos.ListWords()
-	// if err != nil {
-	// 	log.Println("ListWords err", err)
-	// 	return
-	// }
-	// fmt.Println(words)
 
 	log.Fatal(http.ListenAndServe(":8000", handlers.CORS(allowedOrigins, allowedMethods)(r)))
 	fmt.Printf("end\n")

@@ -1,3 +1,6 @@
+build:
+	docker-compose up --build -d
+
 up:
 	docker-compose up -d
 	docker-compose exec frontend npm run dev

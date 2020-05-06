@@ -1,6 +1,6 @@
 # english-words
 英単語学習アプリケーション  
-ソース元：http://www.newgeneralservicelist.org/new-ngsl-japanese-defs
+ソース元：http://www.newgeneralservicelist.org.
 
 ## 起動方法
 ```

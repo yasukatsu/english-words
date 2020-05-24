@@ -10,3 +10,6 @@ down:
 
 log:
 	docker-compose logs $(V)
+
+ps:
+	docker-compose ps

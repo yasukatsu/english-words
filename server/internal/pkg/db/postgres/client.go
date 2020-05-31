@@ -7,7 +7,7 @@ import (
 	_ "github.com/lib/pq"
 	"xorm.io/xorm"
 
-	c "y_ara/english-words/backend/internal/pkg/config"
+	c "y_ara/english-words/server/internal/pkg/config"
 )
 
 // Cli is ...

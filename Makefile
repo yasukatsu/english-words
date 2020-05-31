@@ -3,7 +3,7 @@ build:
 
 up:
 	docker-compose up -d
-	docker-compose exec frontend npm run dev
+	docker-compose exec app npm run dev
 
 down:
 	docker-compose down

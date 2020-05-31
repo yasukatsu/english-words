@@ -9,8 +9,8 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 
-	pos "y_ara/english-words/backend/internal/app/postgres"
-	"y_ara/english-words/backend/internal/pkg/config"
+	pos "y_ara/english-words/server/internal/app/postgres"
+	"y_ara/english-words/server/internal/pkg/config"
 )
 
 func main() {

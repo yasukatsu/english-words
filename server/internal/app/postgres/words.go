@@ -2,7 +2,7 @@ package postgres
 
 import (
 	"log"
-	"y_ara/english-words/backend/internal/pkg/db/postgres"
+	"y_ara/english-words/server/internal/pkg/db/postgres"
 )
 
 // ListWords ...

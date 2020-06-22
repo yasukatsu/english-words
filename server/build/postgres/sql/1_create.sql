@@ -1,0 +1,12 @@
+CREATE TABLE words
+(
+  id SERIAL NOT NULL,
+  spel CHAR(255),
+  define TEXT,
+  pos TEXT,
+  meaning TEXT,
+  update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY
+  (id)
+);

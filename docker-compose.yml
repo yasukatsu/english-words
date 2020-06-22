@@ -1,0 +1,38 @@
+version: "3"
+services:
+  
+  server:
+    container_name: server
+    build: ./server/build/golang
+    tty: true
+    env_file: 
+      - server/config/.env.local
+    ports:
+      - "8000:8000"
+    working_dir: /go/src/y_ara/english-words/server
+    volumes:
+      - ./server:/go/src/y_ara/english-words/server
+    command: go run cmd/main.go
+
+  db:
+    container_name: db
+    image: postgres:12.2
+    env_file: 
+      - ./server/config/.env.local
+    volumes: 
+      - ./server/build/postgres/strage:/var/lib/postgresql
+      - ./server/build/postgres/sql:/docker-entrypoint-initdb.d
+    ports: 
+      - 5432:5432
+
+  app:
+    container_name: app
+    build: ./docker
+    ports: 
+      - '8080:8080'
+    volumes: 
+      - ./app:/app
+    tty: true
+    stdin_open: true
+    command: /bin/sh
+

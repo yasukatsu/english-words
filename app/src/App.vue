@@ -18,9 +18,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 .header {
   width: 80%;
+  margin: 60px 60px;
 }
 </style>

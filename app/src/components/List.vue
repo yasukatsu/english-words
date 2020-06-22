@@ -42,19 +42,16 @@ export default {
 </script>
 
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
+table, td, th {
+  border: 1px #333 solid;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+thead {
+  background: #fda756;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+tbody {
+  background: #fae5d1;
 }
-a {
-  color: #42b983;
+.list {
+  margin: 0px 60px 60px 60px;
 }
 </style>

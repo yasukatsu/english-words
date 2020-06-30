@@ -1,0 +1,29 @@
+kind: reverse
+name: mydb
+source:
+  database: postgres
+  conn_str: dbname= host=db port=5432 user= password= sslmode=disable
+targets:
+- type: codes
+  include_tables: # tables included, you can use **
+    - words
+  language: golang
+  template: | # template for code file, it has higher perior than template_path
+    package postgres
+
+    {{$ilen := len .Imports}}
+    {{if gt $ilen 0}}
+    import (
+      {{range .Imports}}"{{.}}"{{end}}
+    )
+    {{end}}
+
+    {{range .Tables}}
+    // {{TableMapper .Name}} ...
+    type {{TableMapper .Name}} struct {
+    {{$table := .}}
+    {{range .ColumnsSeq}}{{$col := $table.GetColumn .}}	{{ColumnMapper $col.Name}}	{{Type $col}} `{{Tag $table $col}}`
+    {{end}}
+    }
+    {{end}}
+  output_dir: ./internal/pkg/db/postgres # code output directory

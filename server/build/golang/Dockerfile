@@ -10,4 +10,5 @@ RUN go get github.com/gorilla/handlers
 
 RUN go get github.com/caarlos0/env \
  && go get xorm.io/xorm \
+ && go get xorm.io/reverse \
  && go get github.com/lib/pq
